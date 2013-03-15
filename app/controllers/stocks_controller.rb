@@ -40,10 +40,12 @@ class StocksController < ApplicationController
   # POST /stocks
   # POST /stocks.json
   def create
-    @stock = Stock.new(params[:stock])
-
+    
+    ticker = params[:stock][:ticker].upcase
+    @stock = Stock.find_or_create_by_ticker(ticker)
+    
     respond_to do |format|
-      if @stock.save
+      if @stock
         format.html { redirect_to @stock, notice: 'Stock was successfully created.' }
         format.json { render json: @stock, status: :created, location: @stock }
       else
