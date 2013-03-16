@@ -45,7 +45,7 @@ class StocksController < ApplicationController
     @stock = Stock.find_or_create_by_ticker(ticker)
     
     respond_to do |format|
-      if @stock
+      if @stock.valid?
         format.html { redirect_to @stock, notice: 'Stock was successfully created.' }
         format.json { render json: @stock, status: :created, location: @stock }
       else
