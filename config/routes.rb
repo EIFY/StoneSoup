@@ -1,13 +1,15 @@
 StoneSoup::Application.routes.draw do
-  resources :stocks
-
-
-  get "log_in" => "sessions#new", :as => "log_in"
-  get "log_out" => "sessions#destroy", :as => "log_out"
+  
+  resources :stocks, :except => [:edit, :destroy], :path_names => { :new => "look_up" }
 
   get "sign_up" => "users#new", :as => "sign_up"
   root :to => "users#new"
+  
   resources :users
+  
+  get "log_in" => "sessions#new", :as => "log_in"
+  get "log_out" => "sessions#destroy", :as => "log_out"
+  
   resources :sessions
 
   # The priority is based upon order of creation:
