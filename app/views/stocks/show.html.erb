@@ -5,4 +5,11 @@
   <%= @stock.ticker %>
 </p>
 
+<% YahooFinance::STDHASH.each do |key, value| %>
+<p>
+  <b><%= value[0]%></b>
+  <%= @quote.send value[0].to_sym %>
+</p>
+<% end %>
+
 <%= link_to 'Back', stocks_path %>

@@ -14,6 +14,7 @@ class StocksController < ApplicationController
   # GET /stocks/1.json
   def show
     @stock = Stock.find(params[:id])
+    @quote = YahooFinance::get_standard_quotes(@stock.ticker)[@stock.ticker]
 
     respond_to do |format|
       format.html # show.html.erb
