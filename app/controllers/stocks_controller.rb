@@ -15,6 +15,7 @@ class StocksController < ApplicationController
   def show
     @stock = Stock.find(params[:id])
     @quote = YahooFinance::get_standard_quotes(@stock.ticker)[@stock.ticker]
+    @tweets = Twitter.search('$' + @stock.ticker, :result_type => "recent").results
 
     respond_to do |format|
       format.html # show.html.erb

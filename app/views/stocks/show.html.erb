@@ -1,15 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Ticker:</b>
-  <%= @stock.ticker %>
-</p>
-
 <% YahooFinance::STDHASH.each do |key, value| %>
 <p>
   <b><%= value[0]%></b>
   <%= @quote.send value[0].to_sym %>
 </p>
 <% end %>
+
+<table>
+  <% @tweets.each do |t| %>
+    <tr>
+      <th><%= t.user.name %></th>
+      <th><img src="<%= t.user.profile_image_url %>" /></th>
+      <th><%= t.text %></th>
+    </tr>
+  <% end %>
+</table>
 
 <%= link_to 'Back', stocks_path %>
