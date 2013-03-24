@@ -14,4 +14,8 @@ class Stock < ActiveRecord::Base
   attr_accessible :ticker
   
   validates :ticker, :ticker => true
+  
+  has_many :stock_holdings
+  has_many :stock_transactions
+  
 end
