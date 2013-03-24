@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130314203621) do
+ActiveRecord::Schema.define(:version => 20130324230844) do
+
+  create_table "stock_holdings", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "stock_id"
+    t.decimal  "shares"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "stock_transactions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "stock_id"
+    t.string   "type"
+    t.decimal  "shares"
+    t.decimal  "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "stocks", :force => true do |t|
     t.string   "ticker"
