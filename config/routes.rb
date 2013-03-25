@@ -3,7 +3,10 @@ StoneSoup::Application.routes.draw do
   resources :stocks, :except => [:edit, :destroy], :path_names => { :new => "look_up" }
 
   get "sign_up" => "users#new", :as => "sign_up"
-  root :to => "users#new"
+  
+  # Not sure this is the best practice but works for now.
+  root :to => "users#new", :constraints => lambda {|r| !r.session[:user_id]}
+  root :to => "users#show", :constraints => lambda {|r| r.session[:user_id]}
   
   resources :users
   
