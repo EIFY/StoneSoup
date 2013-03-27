@@ -18,4 +18,11 @@ class Stock < ActiveRecord::Base
   has_many :stock_holdings
   has_many :stock_transactions
   
+  def price
+    
+    quote = YahooFinance::get_standard_quotes(self.ticker)[self.ticker]
+    quote.lastTrade
+    
+  end
+  
 end
