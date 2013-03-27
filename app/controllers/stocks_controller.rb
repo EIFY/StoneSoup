@@ -34,11 +34,6 @@ class StocksController < ApplicationController
     end
   end
 
-  # GET /stocks/1/edit
-  def edit
-    @stock = Stock.find(params[:id])
-  end
-
   # POST /stocks
   # POST /stocks.json
   def create
@@ -57,31 +52,4 @@ class StocksController < ApplicationController
     end
   end
 
-  # PUT /stocks/1
-  # PUT /stocks/1.json
-  def update
-    @stock = Stock.find(params[:id])
-
-    respond_to do |format|
-      if @stock.update_attributes(params[:stock])
-        format.html { redirect_to @stock, notice: 'Stock was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @stock.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /stocks/1
-  # DELETE /stocks/1.json
-  def destroy
-    @stock = Stock.find(params[:id])
-    @stock.destroy
-
-    respond_to do |format|
-      format.html { redirect_to stocks_url }
-      format.json { head :no_content }
-    end
-  end
 end

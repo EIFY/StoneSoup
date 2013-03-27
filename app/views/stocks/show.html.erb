@@ -7,6 +7,16 @@
 </p>
 <% end %>
 
+<% if current_user %>
+  <%= form_tag("/buy", :method => "post") do %>
+
+    <%= submit_tag("Buy") %>
+    <%= label_tag(:q, "Shares:") %>
+    <%= text_field_tag(:q) %>
+
+  <% end %>
+<% end %>
+
 <table>
   <% @tweets.each do |t| %>
     <tr>
