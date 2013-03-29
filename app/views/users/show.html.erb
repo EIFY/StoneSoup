@@ -6,7 +6,7 @@
   </tr>
   <% @user.stock_holdings.each do |s| %>
     <tr>
-      <th><%= s.stock.ticker %></th>
+      <th><%= link_to s.stock.ticker, s.stock %></th>
       <th><%= s.shares %></th>
     </tr>
   <% end %>
@@ -23,7 +23,7 @@
 <% @user.stock_transactions.each do |t| %>
   <tr>
     <th><%= t.transaction_type %></th>
-    <th><%= t.stock.ticker %></th>
+    <th><%= link_to t.stock.ticker, t.stock %></th>
     <th><%= t.shares %></th>
     <th><%= t.value %></th>
   </tr>
