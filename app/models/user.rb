@@ -32,4 +32,26 @@ class User < ActiveRecord::Base
     
   end
 
+  def sell_stock(stock_id, shares)
+    
+    holding = self.stock_holdings.find_by_stock_id(stock_id)
+    
+    updated_number_of_shares = holding.shares - shares
+    
+    if !holding or updated_number_of_shares < 0
+      
+      raise "Insufficient shares"
+      
+    else
+      
+      value = Stock.find(stock_id).price * shares
+      
+      StockTransaction.create(:user_id => self.id, :stock_id => stock_id, :transaction_type => 'sell', :shares => shares, :value => value)
+      
+      if updated_number_of_shares == 0 then holding.delete else holding.update_attribute(:shares, updated_number_of_shares) end
+      
+    end
+    
+  end
+
 end
