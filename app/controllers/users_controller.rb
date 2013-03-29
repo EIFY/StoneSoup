@@ -16,10 +16,4 @@ class UsersController < ApplicationController
     @user = current_user
   end
   
-  def buy_stock
-    
-    #
-    
-  end
-  
 end

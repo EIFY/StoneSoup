@@ -1,6 +1,8 @@
 StoneSoup::Application.routes.draw do
   
-  resources :stocks, :except => [:edit, :destroy], :path_names => { :new => "look_up" }
+  resources :stocks, :except => [:edit, :destroy], :path_names => { :new => "look_up" } do
+    post 'buy', :on => :member
+  end
 
   get "sign_up" => "users#new", :as => "sign_up"
   

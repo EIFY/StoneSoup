@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   def buy_stock(stock_id, shares)
     
-    StockTransaction.create(:user_id => self.id, :stock_id => stock_id, :type => 'buy', :shares => shares, :value => Stock.find(stock_id).price * shares)
+    StockTransaction.create(:user_id => self.id, :stock_id => stock_id, :transaction_type => 'buy', :shares => shares, :value => Stock.find(stock_id).price * shares)
     
     holding = self.stock_holdings.find_by_stock_id(stock_id)
     

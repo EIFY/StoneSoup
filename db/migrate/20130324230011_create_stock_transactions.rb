@@ -5,7 +5,7 @@ class CreateStockTransactions < ActiveRecord::Migration
       t.references :user
       t.references :stock
       
-      t.string :type
+      t.string :transaction_type
       t.decimal :shares
       t.decimal :value
 

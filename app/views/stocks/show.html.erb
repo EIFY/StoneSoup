@@ -8,14 +8,16 @@
 <% end %>
 
 <% if current_user %>
-  <%= form_tag("/buy", :method => "post") do %>
+<%= form_tag(buy_stock_path(@stock)) do %>
 
     <%= submit_tag("Buy") %>
-    <%= label_tag(:q, "Shares:") %>
-    <%= text_field_tag(:q) %>
+    <%= label_tag(:shares, "Shares:") %>
+    <%= text_field_tag(:shares) %>
 
   <% end %>
 <% end %>
+
+<h1>Top tweets</h1>
 
 <table>
   <% @tweets.each do |t| %>

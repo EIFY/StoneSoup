@@ -1,3 +1,5 @@
+require 'bigdecimal'
+
 class StocksController < ApplicationController
   # GET /stocks
   # GET /stocks.json
@@ -15,7 +17,7 @@ class StocksController < ApplicationController
   def show
     @stock = Stock.find(params[:id])
     @quote = YahooFinance::get_standard_quotes(@stock.ticker)[@stock.ticker]
-    @tweets = Twitter.search('$' + @stock.ticker, :result_type => "recent").results
+    @tweets = Twitter.search('$' + @stock.ticker).results
 
     respond_to do |format|
       format.html # show.html.erb
@@ -50,6 +52,13 @@ class StocksController < ApplicationController
         format.json { render json: @stock.errors, status: :unprocessable_entity }
       end
     end
+  end
+  
+  def buy
+    
+    current_user.buy_stock(params[:id], BigDecimal.new(params[:shares]))
+    redirect_to user_path(current_user)
+  
   end
 
 end
