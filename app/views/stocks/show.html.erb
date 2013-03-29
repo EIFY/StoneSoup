@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Stock Info</h1>
 
 <% YahooFinance::STDHASH.each do |key, value| %>
@@ -12,7 +10,9 @@
 <% if current_user %>
 <%= form_tag(buy_stock_path(@stock)) do %>
 
-    <%= submit_tag("Buy") %>
+    <%= submit_tag "Buy", :name => 'buy' %>
+    <%= submit_tag "Sell", :name => 'sell' %>
+    <br />
     <%= label_tag(:shares, "Shares:") %>
     <%= text_field_tag(:shares) %>
 
