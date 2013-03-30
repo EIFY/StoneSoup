@@ -11,11 +11,11 @@
 <% @stocks.each do |stock| %>
   <tr>
     <td><%= stock.ticker %></td>
-    <td><%= link_to 'Show', stock %></td>
+    <td><%= link_to 'Info', stock %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Stock', new_stock_path %>
+<%= link_to 'Stock lookup', new_stock_path %>

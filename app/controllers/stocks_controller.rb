@@ -45,7 +45,7 @@ class StocksController < ApplicationController
     
     respond_to do |format|
       if @stock.valid?
-        format.html { redirect_to @stock, notice: 'Stock was successfully created.' }
+        format.html { redirect_to @stock }
         format.json { render json: @stock, status: :created, location: @stock }
       else
         format.html { render action: "new" }
