@@ -39,7 +39,7 @@
     <th>Value</th>
     <th>Date & Time</th>
   </tr>
-<% @user.stock_transactions.each do |t| %>
+<% @user.stock_transactions.order("created_at DESC").each do |t| %>
   <tr>
     <th><%= t.transaction_type %></th>
     <th><%= link_to t.stock.ticker, t.stock %></th>
