@@ -1,13 +1,17 @@
+<h1><%= link_to 'List of Common Stocks', stocks_path %></h1>
+
 <h1>Stock Holdings</h1>
 <table border="1">
   <tr>
     <th>Symbol</th>
     <th>Shares</th>
+    <th>Value</th>
   </tr>
   <% @user.stock_holdings.each do |s| %>
     <tr>
       <th><%= link_to s.stock.ticker, s.stock %></th>
       <th><%= s.shares %></th>
+      <th><%= s.shares * s.stock.price %></th>
     </tr>
   <% end %>
 </table>
@@ -26,8 +30,6 @@
 
 <% end %>
 
-<%= link_to 'Common stocks', stocks_path %>
-
 <h1>Stock Transactions</h1>
 <table border="1">
   <tr>
@@ -35,6 +37,7 @@
     <th>Symbol</th>
     <th>Shares</th>
     <th>Value</th>
+    <th>Date & Time</th>
   </tr>
 <% @user.stock_transactions.each do |t| %>
   <tr>
@@ -42,6 +45,7 @@
     <th><%= link_to t.stock.ticker, t.stock %></th>
     <th><%= t.shares %></th>
     <th><%= t.value %></th>
+    <th><%= t.created_at %></th>
   </tr>
 <% end %>
 </table>
