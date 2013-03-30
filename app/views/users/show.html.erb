@@ -12,6 +12,20 @@
   <% end %>
 </table>
 
+<%= form_tag(transaction_user_path(@user)) do %>
+
+  <%= submit_tag "Buy", :name => 'buy' %>
+  <%= submit_tag "Sell", :name => 'sell' %>
+
+  <br />
+
+  <%= label_tag(:symbol, "Symbol:") %>
+  <%= text_field_tag(:symbol) %>
+  <%= label_tag(:shares, "Shares:") %>
+  <%= text_field_tag(:shares) %>
+
+<% end %>
+
 <h1>Stock Transactions</h1>
 <table border="1">
   <tr>

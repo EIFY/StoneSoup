@@ -3,7 +3,7 @@ class TickerValidator < ActiveModel::EachValidator
     
     quote = YahooFinance::get_standard_quotes(value)[value]
     
-    unless quote.valid?
+    unless quote and quote.valid?
       record.errors[attribute] << (options[:message] || "is not a valid ticker")
     end
     

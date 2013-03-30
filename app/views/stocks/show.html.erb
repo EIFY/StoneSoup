@@ -8,7 +8,7 @@
 <% end %>
 
 <% if current_user %>
-<%= form_tag(buy_stock_path(@stock)) do %>
+  <%= form_tag(buy_stock_path(@stock)) do %>
 
     <%= submit_tag "Buy", :name => 'buy' %>
     <%= submit_tag "Sell", :name => 'sell' %>

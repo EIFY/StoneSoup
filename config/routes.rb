@@ -10,7 +10,9 @@ StoneSoup::Application.routes.draw do
   root :to => "users#new", :constraints => lambda {|r| !r.session[:user_id]}
   root :to => "users#show", :constraints => lambda {|r| r.session[:user_id]}
   
-  resources :users
+  resources :users do
+    post 'transaction', :on => :member
+  end
   
   get "log_in" => "sessions#new", :as => "log_in"
   get "log_out" => "sessions#destroy", :as => "log_out"
