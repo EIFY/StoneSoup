@@ -53,30 +53,5 @@ class StocksController < ApplicationController
       end
     end
   end
-  
-  def buy
-    
-    if params[:buy]
-      
-      number_of_shares = BigDecimal.new(params[:shares])
-      
-      if number_of_shares <= 0
-        
-        redirect_to :back, :notice => "You can't buy zero or negative shares!"
-      
-      else
-      
-        current_user.buy_stock(params[:id], number_of_shares)
-        redirect_to user_path(current_user)
-        
-      end
-      
-    elsif params[:sell]
-      
-      redirect_to :back, :notice => "Sell button pressed!"
-      
-    end
-  
-  end
 
 end

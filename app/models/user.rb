@@ -36,11 +36,13 @@ class User < ActiveRecord::Base
     
     holding = self.stock_holdings.find_by_stock_id(stock_id)
     
-    updated_number_of_shares = holding.shares - shares
-    
-    if !holding or updated_number_of_shares < 0
+    if !holding
       
-      raise "Insufficient shares"
+      raise "You don't have this stock!"
+      
+    elsif (updated_number_of_shares = holding.shares - shares) < 0
+      
+      raise "Insufficient shares!"
       
     else
       

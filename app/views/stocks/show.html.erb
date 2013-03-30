@@ -8,13 +8,18 @@
 <% end %>
 
 <% if current_user %>
-  <%= form_tag(buy_stock_path(@stock)) do %>
 
-    <%= submit_tag "Buy", :name => 'buy' %>
-    <%= submit_tag "Sell", :name => 'sell' %>
-    <br />
-    <%= label_tag(:shares, "Shares:") %>
-    <%= text_field_tag(:shares) %>
+  <%= form_tag(transaction_user_path(current_user)) do %>
+
+  <%= submit_tag "Buy", :name => 'buy' %>
+  <%= submit_tag "Sell", :name => 'sell' %>
+
+  <br />
+
+  <%= hidden_field_tag 'symbol', @stock.ticker %>
+
+  <%= label_tag(:shares, "Shares:") %>
+  <%= text_field_tag(:shares) %>
 
   <% end %>
 <% end %>
