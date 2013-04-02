@@ -9,11 +9,17 @@
   </tr>
   <% @user.stock_holdings.each do |s| %>
     <tr>
-      <th><%= link_to s.stock.ticker, s.stock %></th>
-      <th><%= s.shares %></th>
-      <th><%= s.shares * s.stock.price %></th>
+      <td><%= link_to s.stock.ticker, s.stock %></td>
+      <td><%= s.shares %></td>
+      <td><%= s.shares * s.stock.price %></td>
     </tr>
   <% end %>
+
+  <tr>
+    <th colspan = "2">Portfolio:</th>
+    <td><%= @user.stock_holdings.sum {|s| s.shares * s.stock.price } %></td>
+  </tr>
+
 </table>
 
 <%= form_tag(transaction_user_path(@user)) do %>
@@ -41,11 +47,11 @@
   </tr>
 <% @user.stock_transactions.order("created_at DESC").each do |t| %>
   <tr>
-    <th><%= t.transaction_type %></th>
-    <th><%= link_to t.stock.ticker, t.stock %></th>
-    <th><%= t.shares %></th>
-    <th><%= t.value %></th>
-    <th><%= t.created_at %></th>
+    <td><%= t.transaction_type %></td>
+    <td><%= link_to t.stock.ticker, t.stock %></td>
+    <td><%= t.shares %></td>
+    <td><%= t.value %></td>
+    <td><%= t.created_at %></td>
   </tr>
 <% end %>
 </table>

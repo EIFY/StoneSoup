@@ -1,3 +1,5 @@
+require "bigdecimal"
+
 class TickerValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     
@@ -21,7 +23,10 @@ class Stock < ActiveRecord::Base
   def price
     
     quote = YahooFinance::get_standard_quotes(self.ticker)[self.ticker]
-    quote.lastTrade
+    
+    # Unfortunately lastTrade returns float... roundabout temp. measure for now.
+    
+    BigDecimal.new(quote.lastTrade.to_s)
     
   end
   
