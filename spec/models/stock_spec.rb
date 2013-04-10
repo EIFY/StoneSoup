@@ -8,9 +8,11 @@ describe Stock do
   it "reflects the price given by YahooFinance" do
     
     #YahooFinance::StandardQuote.any_instance.stub(:lastTrade).and_return(1.0)
-    nil.stub(:lastTrade).and_return(1.0)
+    #Doesn't work...put on back burner.
     
-    #Doesn't work either way...put on back burner.
+    allow_message_expectations_on_nil
+    
+    nil.stub(:lastTrade).and_return(1.0)
     
     s = Stock.create(:ticker => nil)
     

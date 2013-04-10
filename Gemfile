@@ -36,6 +36,7 @@ group :test do
   gem "database_cleaner"
   gem "launchy"
   gem "guard-rspec"
+  gem 'rb-fsevent'
 end
 
 gem 'jquery-rails'

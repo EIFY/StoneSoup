@@ -34,107 +34,10 @@ describe StocksController do
     {}
   end
 
-  describe "GET index" do
-    it "assigns all stocks as @stocks" do
-      stock = Stock.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:stocks).should eq([stock])
-    end
-  end
-
-  describe "GET show" do
-    it "assigns the requested stock as @stock" do
-      stock = Stock.create! valid_attributes
-      get :show, {:id => stock.to_param}, valid_session
-      assigns(:stock).should eq(stock)
-    end
-  end
-
   describe "GET new" do
     it "assigns a new stock as @stock" do
       get :new, {}, valid_session
       assigns(:stock).should be_a_new(Stock)
-    end
-  end
-
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Stock" do
-        expect {
-          post :create, {:stock => valid_attributes}, valid_session
-        }.to change(Stock, :count).by(1)
-      end
-
-      it "assigns a newly created stock as @stock" do
-        post :create, {:stock => valid_attributes}, valid_session
-        assigns(:stock).should be_a(Stock)
-        assigns(:stock).should be_persisted
-      end
-
-      it "redirects to the created stock" do
-        post :create, {:stock => valid_attributes}, valid_session
-        response.should redirect_to(Stock.last)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved stock as @stock" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Stock.any_instance.stub(:save).and_return(false)
-        post :create, {:stock => { "ticker" => "invalid value" }}, valid_session
-        assigns(:stock).should be_a_new(Stock)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Stock.any_instance.stub(:save).and_return(false)
-        post :create, {:stock => { "ticker" => "invalid value" }}, valid_session
-        response.should render_template("new")
-      end
-    end
-  end
-
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested stock" do
-        stock = Stock.create! valid_attributes
-        # Assuming there are no other stocks in the database, this
-        # specifies that the Stock created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Stock.any_instance.should_receive(:update_attributes).with({ "ticker" => "MyString" })
-        put :update, {:id => stock.to_param, :stock => { "ticker" => "MyString" }}, valid_session
-      end
-
-      it "assigns the requested stock as @stock" do
-        stock = Stock.create! valid_attributes
-        put :update, {:id => stock.to_param, :stock => valid_attributes}, valid_session
-        assigns(:stock).should eq(stock)
-      end
-
-      it "redirects to the stock" do
-        stock = Stock.create! valid_attributes
-        put :update, {:id => stock.to_param, :stock => valid_attributes}, valid_session
-        response.should redirect_to(stock)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns the stock as @stock" do
-        stock = Stock.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Stock.any_instance.stub(:save).and_return(false)
-        put :update, {:id => stock.to_param, :stock => { "ticker" => "invalid value" }}, valid_session
-        assigns(:stock).should eq(stock)
-      end
-
-      it "re-renders the 'edit' template" do
-        stock = Stock.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Stock.any_instance.stub(:save).and_return(false)
-        put :update, {:id => stock.to_param, :stock => { "ticker" => "invalid value" }}, valid_session
-        response.should render_template("edit")
-      end
     end
   end
 
