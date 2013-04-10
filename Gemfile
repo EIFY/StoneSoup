@@ -39,6 +39,8 @@ group :test do
   gem 'rb-fsevent'
 end
 
+gem 'bootstrap-sass', '~> 2.3.1.0'
+
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
