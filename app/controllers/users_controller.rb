@@ -30,15 +30,17 @@ class UsersController < ApplicationController
     
     if !stock.valid?
       
-      flash[:notice] = "Unknown symbol!"
+      flash[:alert] = "Unknown symbol!"
     
     elsif number_of_shares <= 0
       
-      flash[:notice] = "Number of shares can't be zero or negative!"
+      flash[:alert] = "Number of shares can't be zero or negative!"
       
     elsif params[:buy]
         
       current_user.buy_stock(stock.id, number_of_shares)
+      
+      flash[:notice] = "#{number_of_shares} shares of #{ticker} bought"
       
     elsif params[:sell]
       
@@ -46,9 +48,11 @@ class UsersController < ApplicationController
       
         current_user.sell_stock(stock.id, number_of_shares)
         
+        flash[:notice] = "#{number_of_shares} shares of #{ticker} sold"
+        
       rescue Exception => e
         
-        flash[:notice] = e.message
+        flash[:alert] = e.message
         
       end
       
