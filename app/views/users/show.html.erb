@@ -1,40 +1,51 @@
 <h1><%= link_to 'List of Common Stocks', stocks_path %></h1>
 
 <h1>Stock Holdings</h1>
-<table border="1">
-  <tr>
-    <th>Symbol</th>
-    <th>Shares</th>
-    <th>Value</th>
-  </tr>
-  <% @user.stock_holdings.each do |s| %>
-    <tr>
-      <td><%= link_to s.stock.ticker, s.stock %></td>
-      <td><%= s.shares %></td>
-      <td><%= s.shares * s.stock.price %></td>
-    </tr>
-  <% end %>
 
-  <tr>
-    <th colspan = "2">Portfolio:</th>
-    <td><%= @user.stock_holdings.sum {|s| s.shares * s.stock.price } %></td>
-  </tr>
+<div class="row">
+  <div class="span9">
 
-</table>
+    <table border="1">
+      <tr>
+        <th>Symbol</th>
+        <th>Shares</th>
+        <th>Value</th>
+      </tr>
+      <% @user.stock_holdings.each do |s| %>
+        <tr>
+          <td><%= link_to s.stock.ticker, s.stock %></td>
+          <td><%= s.shares %></td>
+          <td><%= s.shares * s.stock.price %></td>
+        </tr>
+      <% end %>
 
-<%= form_tag(transaction_user_path(@user)) do %>
+      <tr>
+        <th colspan = "2">Portfolio:</th>
+        <td><%= @user.stock_holdings.sum {|s| s.shares * s.stock.price } %></td>
+      </tr>
 
-  <%= submit_tag "Buy", :name => 'buy' %>
-  <%= submit_tag "Sell", :name => 'sell' %>
+    </table>
 
-  <br />
+  </div>
 
-  <%= label_tag(:symbol, "Symbol:") %>
-  <%= text_field_tag(:symbol) %>
-  <%= label_tag(:shares, "Shares:") %>
-  <%= text_field_tag(:shares) %>
+  <div class="span3">
 
-<% end %>
+    <%= form_tag(transaction_user_path(@user)) do %>
+
+      <%= submit_tag "Buy", :name => 'buy', :class =>"btn" %>
+      <%= submit_tag "Sell", :name => 'sell', :class =>"btn" %>
+
+      <br />
+
+      <%= label_tag(:symbol, "Symbol:") %>
+      <%= text_field_tag(:symbol) %>
+      <%= label_tag(:shares, "Shares:") %>
+      <%= text_field_tag(:shares) %>
+
+    <% end %>
+    
+  </div>
+</div>
 
 <h1>Stock Transactions</h1>
 <table border="1">
