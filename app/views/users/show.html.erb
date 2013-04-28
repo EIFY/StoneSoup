@@ -1,6 +1,21 @@
-<h1><%= link_to 'List of Common Stocks', stocks_path %></h1>
+<fieldset>
 
-<h1>Stock Holdings</h1>
+<legend><%= link_to 'Stocks', stocks_path %></legend>
+
+<%= render 'stocks/form' %>
+
+<%= form_tag(transaction_user_path(@user), :class => "form-inline") do %>
+
+<%= submit_tag "Buy", :name => 'buy', :class => "btn" %>
+<%= submit_tag "Sell", :name => 'sell', :class => "btn" %>
+
+<%= text_field_tag(:shares, nil, :placeholder => "Shares") %>
+<%= label_tag(:of, "of") %>
+<%= text_field_tag(:symbol, nil, :placeholder => "Symbol") %>
+
+<% end %>
+
+<h4>Holdings</h4>
 
 <table border="1">
   <tr>
@@ -23,20 +38,7 @@
 
 </table>
 
-<br />
-
-<%= form_tag(transaction_user_path(@user), :class => "form-inline") do %>
-
-  <%= submit_tag "Buy", :name => 'buy', :class => "btn" %>
-  <%= submit_tag "Sell", :name => 'sell', :class => "btn" %>
-
-  <%= text_field_tag(:shares, nil, :placeholder => "Shares") %>
-  <%= label_tag(:of, "of") %>
-  <%= text_field_tag(:symbol, nil, :placeholder => "Symbol") %>
-
-<% end %>
-
-<h1>Stock Transactions</h1>
+<h4>Transactions</h4>
 <table border="1">
   <tr>
     <th>Buy/Sell</th>
@@ -55,3 +57,5 @@
   </tr>
 <% end %>
 </table>
+
+</fieldset>

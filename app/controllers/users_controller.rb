@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   
   def show
     @user = current_user
+    @stock = Stock.new
   end
   
   def transaction
