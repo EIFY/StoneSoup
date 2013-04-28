@@ -8,20 +8,19 @@
 <% end %>
 
 <% if current_user %>
+  <%= form_tag(transaction_user_path(current_user), :class => "form-inline") do %>
 
-  <%= form_tag(transaction_user_path(current_user)) do %>
+  <%= submit_tag "Buy", :name => 'buy', :class => "btn" %>
+  <%= submit_tag "Sell", :name => 'sell', :class => "btn" %>
 
-  <%= submit_tag "Buy", :name => 'buy', :class =>"btn" %>
-  <%= submit_tag "Sell", :name => 'sell', :class =>"btn" %>
-
-  <br />
+  <%= text_field_tag(:shares, nil, :placeholder => "Shares") %>
+  <%= label_tag(:of, "of") %>
+  <%= label_tag(:of, @stock.ticker) %>
 
   <%= hidden_field_tag 'symbol', @stock.ticker %>
 
-  <%= label_tag(:shares, "Shares:") %>
-  <%= text_field_tag(:shares) %>
-
   <% end %>
+
 <% end %>
 
 <%= link_to 'Back', stocks_path %>
